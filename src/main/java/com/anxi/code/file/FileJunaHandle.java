@@ -11,7 +11,7 @@ public class FileJunaHandle {
 
     public static void main(String[] s) {
         String cataloguePath = "D:\\software\\test";
-        fileGather(cataloguePath);
+        fileGather(cataloguePath,"D:\\software\\test01");
         fileJunaHandle();
     }
 
