@@ -9,10 +9,13 @@ public class FileJunaHandle {
 
     private static List<FileObj> fileList = new ArrayList<>();
 
+    private static int fileNum = 0;
+
     public static void main(String[] s) {
-        String cataloguePath = "D:\\software\\test";
-        fileGather(cataloguePath,"D:\\software\\test01");
+        String cataloguePath = "E:\\test";
+        fileGather(cataloguePath);
         fileJunaHandle();
+        System.out.println("累计重复文件数量：" + fileNum);
     }
 
     private static void fileGather(String... cataloguePaths) {
@@ -31,7 +34,7 @@ public class FileJunaHandle {
     }
 
     private static void fileJunaHandle() {
-        for (int index = 0; index < fileList.size(); index++) {
+        for (int index = 0; index < fileList.size(); ) {
             FileObj fileObj = fileList.get(index);
             String simpleFileName = fileObj.simpleFileName;
             List<FileObj> repetitionList = new ArrayList<>();
@@ -42,14 +45,14 @@ public class FileJunaHandle {
                 if (simpleFileName.equals(next.simpleFileName)) {
                     repetitionList.add(next);
                     iterator.remove();
-                    if (index1 <= index) {
-                        index = index1;
-                    }
+                } else if (0 == index1) {
+                    iterator.remove();
                 }
                 index1++;
             }
             if (repetitionList.size() > 1) {
-                System.out.println(simpleFileName);
+                fileNum += repetitionList.size();
+                System.out.println("文件名：" + simpleFileName + "【" + repetitionList.size() + "】");
                 for (int i = 0; i < repetitionList.size(); i++) {
                     System.out.println("    " + repetitionList.get(i).filePath);
                 }

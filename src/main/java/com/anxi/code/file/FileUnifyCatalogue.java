@@ -52,6 +52,7 @@ public class FileUnifyCatalogue {
                         @Override
                         public void run() {
                             try {
+                                String json = "{\"name\":\"linJing\",\"\"}";
                                 System.out.println("剪切文件[" + file.getName() + "]开始");
                                 long beginMs = System.currentTimeMillis();
                                 Files.move(file, new File(toCatalogue.getPath() + File.separator + file.getName()));
